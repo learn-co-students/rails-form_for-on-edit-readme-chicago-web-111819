@@ -21,7 +21,6 @@ class PostsController < ApplicationController
 
 	def edit
 		@post = Post.find(params[:id])
-		puts "MANUAL: #{params}"
 	end
 
 	def update
