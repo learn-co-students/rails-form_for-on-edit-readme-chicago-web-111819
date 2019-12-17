@@ -13,19 +13,20 @@ class PostsController < ApplicationController
 
 	def create
 	  @post = Post.new
-	  @post.title = params[:title]
-	  @post.description = params[:description]
+	  @post.title = params[:post][:title]
+	  @post.description = params[:post][:description]
 	  @post.save
 	  redirect_to post_path(@post)
 	end
 
 	def edit
 		@post = Post.find(params[:id])
+		puts "MANUAL: #{params}"
 	end
 
 	def update
 	  @post = Post.find(params[:id])
-	  @post.update(title: params[:title], description: params[:description])
+	  @post.update(params.require(:post).permit(:title, :description))
 	  redirect_to post_path(@post)
 	end
 end
